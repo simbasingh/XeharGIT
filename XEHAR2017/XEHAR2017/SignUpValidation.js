@@ -124,15 +124,15 @@ function allnumeric(uzip,uname)
     var numbers = /^[0-9]+$/;  
     if ( uzip.value.match(numbers))
     {
-        alert('Form Succesfully Submitted');
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                //document.getElementById("demo").innerHTML = this.responseText;
+                alert('Form Succesfully Submitted');
             }
         };
-        xhttp.open("GET", "page2.aspx", true);
-        xhttp.send();
+        xhttp.open("POST", "page2.aspx/AddVendor", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("username=Reginald");
        // window.location.reload();
         //var $form = $("<form/>").attr("id", "registration")
         //                    .attr("action", "Page2.aspx")

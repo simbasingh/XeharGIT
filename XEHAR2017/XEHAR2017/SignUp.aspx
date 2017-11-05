@@ -24,22 +24,22 @@
     <body onload="document.registration.userid.focus();">  
 <h1>Registration Form</h1>  
 <p>Use tab keys to move from one input field to the next.</p>  
-<form name='registration' action="page2.aspx" onsubmit="return formValidation();">  
+<form name='registration' method="post" runat="server" onsubmit="return formValidation();">  
 <ul>  
 
  
 <li><label for="username">Name:</label></li>  
-<li><input type="text" name="username" size="25" /></li> 
+<li><input type="text" name="username" id="name" runat="server" size="25" /></li> 
 <li><label for="vin">VIN:</label></li>  
-<li><input type="text" name="vin" size="25" /></li>   
+<li><input type="text" name="vin" id="vin" size="25" runat="server" /></li>   
      <li><label for="email">Email:</label></li>  
-<li><input type="text" name="email" size="50" /></li> 
+<li><input type="text" name="email" id="email" runat="server" size="50" /></li> 
 <li><label for="address">Address:</label></li>  
-<li><input type="text" name="address" size="50" /></li> 
+<li><input type="text" name="address" id="address" runat="server" size="50" /></li> 
  <li><label for="city">City:</label></li>  
-<li><input type="text" name="city" size="25" /></li>  
+<li><input type="text" name="city" id="city" runat="server" size="25" /></li>  
 <li><label for="country">Country:</label></li>  
-<li><select name="country">  
+<li><select name="country" id="country" runat="server">  
 <option selected="" value="Default">(Please select a country)</option>  
 <option value="AF">Australia</option>  
 <option value="AL">Canada</option>  
@@ -49,14 +49,17 @@
 </select></li>  
    
 <li><label for="zip">ZIP Code:</label></li>  
-<li><input type="text" name="zip" /></li>  
+<li><input type="text" name="zip" id="zip" runat="server" /></li>  
  
 
  
 <li><label for="desc">About:</label></li>  
 <li><textarea name="desc" id="desc"></textarea></li>  
-<li><input type="button" name="submit" value="Submit" onclick="formValidation();" /></li>  
-</ul>  
+<li><%--<input type="button" name="submit" value="Submit" id="sub" runat="server" onclick="AddVendor_Click();formValidation();" />--%>
+    <asp:Button ID="addVendor" runat="server" Text="Submit" OnClick="AddVendor_Click" OnClientClick="formValidation();" />
+</li>  
+</ul>
+    <input type="hidden" id="vendor" runat="server" />
 </form>  
 </body>  
 </html>
