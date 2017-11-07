@@ -76,13 +76,13 @@ namespace XEHAR2017 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText zip;
         
         /// <summary>
-        /// addVendor control.
+        /// sub control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addVendor;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton sub;
         
         /// <summary>
         /// vendor control.
@@ -92,5 +92,14 @@ namespace XEHAR2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden vendor;
+        
+        /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
     }
 }

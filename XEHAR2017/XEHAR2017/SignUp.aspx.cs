@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Web.Configuration;
+using System.Web.Services;
 
 namespace XEHAR2017
 {
@@ -27,6 +28,26 @@ namespace XEHAR2017
                 City = city.Value,
                 Country = country.Value,
                 Zip = zip.Value,
+
+            };
+            using (var con = new MySql.Data.MySqlClient.MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString))
+            {
+                MiddleEarth.CreateVendor(con, vendor);
+            }
+        }
+        [WebMethod]
+        public static void AddVendor(string name, string vin, string email, string address, string city, string country, string zip)
+        {
+            var k = new WebForm1();
+            var vendor = new Vendor
+            {
+                Name = name,
+                VIN = vin,
+                Email = email,
+                Street = address,
+                City = city,
+                Country = country,
+                Zip = zip,
 
             };
             using (var con = new MySql.Data.MySqlClient.MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString))

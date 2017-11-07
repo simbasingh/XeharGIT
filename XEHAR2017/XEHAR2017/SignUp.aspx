@@ -19,9 +19,9 @@
             
  
         </style>
-    <script src="SignUpValidation.js"></script>  
+    <script src="SignUpValidation.js"></script> 
     </head>
-    <body onload="document.registration.userid.focus();">  
+    <body <%--onload="document.registration.userid.focus();"--%>>  
 <h1>Registration Form</h1>  
 <p>Use tab keys to move from one input field to the next.</p>  
 <form name='registration' method="post" runat="server" onsubmit="return formValidation();">  
@@ -55,11 +55,13 @@
  
 <li><label for="desc">About:</label></li>  
 <li><textarea name="desc" id="desc"></textarea></li>  
-<li><%--<input type="button" name="submit" value="Submit" id="sub" runat="server" onclick="AddVendor_Click();formValidation();" />--%>
-    <asp:Button ID="addVendor" runat="server" Text="Submit" OnClick="AddVendor_Click" OnClientClick="formValidation();" />
+<li><input type="button" name="submit" value="Submit" id="sub" runat="server" onclick="formValidation();" />
+    <%--<asp:Button ID="addVendor" runat="server" Text="Submit" OnClick="AddVendor_Click" OnClientClick="formValidation();" />--%>
 </li>  
 </ul>
     <input type="hidden" id="vendor" runat="server" />
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
+</asp:ScriptManager>
 </form>  
 </body>  
 </html>

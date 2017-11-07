@@ -45,20 +45,20 @@ namespace XEHAR2017
             if (TestConnection(con, out errors))
             {
                 con.Open();
-                var sql = "Insert into 'xehardb'.'vendors'" +
-                    "(Name, VIN, phoneNumber, Street, City, State, Zip, Country, Email)" +
-                    "Values(@name, @vin, @phone, @street, @city, @state, @zip, @country, @email)";
+                var sql = "Insert into vendors" +
+                    "(Name, VIN, Street, City, Zip, Country, Email)" +
+                    "Values(@name, @vin, @street, @city, @zip, @country, @email)";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@name", r.Name);
-                    cmd.Parameters.AddWithValue("@vin", r.Phone);
-                    cmd.Parameters.AddWithValue("@phone", r.Phone);
-                    cmd.Parameters.AddWithValue("@street", r.Phone);
-                    cmd.Parameters.AddWithValue("@city", r.Phone);
-                    cmd.Parameters.AddWithValue("@state", r.Phone);
-                    cmd.Parameters.AddWithValue("@zip", r.Phone);
-                    cmd.Parameters.AddWithValue("@country", r.Phone);
-                    cmd.Parameters.AddWithValue("@email", r.Phone);
+                    cmd.Parameters.AddWithValue("@vin", r.VIN);
+                    //cmd.Parameters.AddWithValue("@phone", r.Phone);
+                    cmd.Parameters.AddWithValue("@street", r.Street);
+                    cmd.Parameters.AddWithValue("@city", r.City);
+                    //cmd.Parameters.AddWithValue("@state", r.State);
+                    cmd.Parameters.AddWithValue("@zip", r.Zip);
+                    cmd.Parameters.AddWithValue("@country", r.Country);
+                    cmd.Parameters.AddWithValue("@email", r.Email);
                     cmd.ExecuteNonQuery();
                 }
             }
