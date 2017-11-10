@@ -57,7 +57,7 @@ namespace Quicky
         {
             MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
             con.Open();
-
+            
             using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
@@ -70,6 +70,7 @@ namespace Quicky
                 }
                 
             }
+           
 
         }
     }
