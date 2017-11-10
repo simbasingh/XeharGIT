@@ -57,18 +57,20 @@ namespace Quicky
         {
             MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
             con.Open();
-
+            
             using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
+                    con.Close();
                     return dt;
                     
                 }
-                con.Close();
+                
             }
+           
 
         }
     }
