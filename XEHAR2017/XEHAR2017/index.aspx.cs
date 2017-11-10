@@ -56,8 +56,8 @@ namespace Quicky
         private static DataTable RunSQL(string query)
         {
             MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
+
             con.Open();
-            
             using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
