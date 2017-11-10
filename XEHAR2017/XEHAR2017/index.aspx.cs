@@ -17,7 +17,6 @@ namespace Quicky
         MySqlConnection k = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-
             //CLT.InnerText = Customers();
         }
         public string Open()

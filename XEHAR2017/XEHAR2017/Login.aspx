@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="XEHAR2017.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="XEHAR2017.Login" %>
 
 <!DOCTYPE html>
 
@@ -23,6 +23,7 @@
 </div>
  
 <div class='container'>
+   
 <asp:Label ID="lblPwd" runat="server" Text="Password:" CssClass="lbl"/>
 <br/>
 <asp:TextBox ID="txtPwd" runat="server" TextMode="Password" 
