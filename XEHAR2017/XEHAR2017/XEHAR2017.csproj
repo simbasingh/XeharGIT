@@ -108,6 +108,7 @@
     <Content Include="customer.aspx" />
     <Content Include="inventory.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MnkVendor.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -167,6 +168,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="MiddleEarth.cs" />
+    <Compile Include="MnkVendor.aspx.cs">
+      <DependentUpon>MnkVendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MnkVendor.aspx.designer.cs">
+      <DependentUpon>MnkVendor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pictureLibrary.aspx.cs">
       <DependentUpon>pictureLibrary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
