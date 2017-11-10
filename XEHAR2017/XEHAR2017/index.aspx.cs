@@ -64,10 +64,11 @@ namespace Quicky
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
+                    con.Close();
                     return dt;
                     
                 }
-                con.Close();
+                
             }
 
         }
