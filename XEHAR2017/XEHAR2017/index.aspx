@@ -1,63 +1,56 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Quicky.index" MasterPageFile="~/Quicky.Master"%>
 <asp:Content ContentPlaceHolderID="head" runat="server">
-    <%
-        json.Value = Customers();
-        
-         %>
-     <%--So we want to create a variable to assign the value of the contents the json string from HTML so that javascript can use it--%>
-    <script type="text/javascript">
-    google.load("visualization", "1", { packages: ["corechart"] });
-    google.setOnLoadCallback(drawChart);
-    //function drawChart() {
-
-    //    var options = {
-    //        title: 'USA City Distribution'
-    //    };
-    //    var r = getElementById("json");
-    //    $.ajax({
-    //        type: "GET",
-    //        url: "index.aspx",
-    //        data: '{}',
-    //        contentType: "application/json; charset=utf-8",
-    //        dataType: "json",
-    //        success: function (r) {
-    //            var data = google.visualization.arrayToDataTable(r.d);
-    //            var chart = new google.visualization.PieChart($("#piechart")[0]);
-    //            chart.draw(data, options);
-    //        },
-    //        failure: function (r) {
-    //            alert(r.d);
-    //        },
-    //        error: function (r) {
-    //            alert(r.d);
-    //        }
-    //    });
-    //}
-    function drawChart() {
-        //var r = document.getElementById("Body_json");
-        var data = google.visualization.arrayToDataTable([document.getElementById("Body_json").value]);
-        //var data = google.visualization.arrayToDataTable([
-        //  ['Task', 'Hours per Day'],
-        //  ['Work', 11],
-        //  ['Eat', 2],
-        //  ['Commute', 2],
-        //  ['Watch TV', 2],
-        //  ['Sleep', 7]
-        //]);
-
-        var options = {
-            title: 'My Daily Activities'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-    }
-</script>
+    
 </asp:Content>
 <asp:Content ContentPlaceHolderID="Title" runat="server">Home</asp:Content>
 <asp:Content ContentPlaceHolderID="Body" runat="server">
     <%--<h1 runat="server" id="CLT"></h1>--%>
-   // <input type="hidden" name="json" id="json" runat="server" />
+    <input type="hidden" name="json" id="json" runat="server" />
+    <%--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>--%>
     
+     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
+        
+       
+
+        PageMethods.Customers(onSucess, onError);
+
+        function onSucess(result) {
+            
+            var result1 = [];
+            result1 = JSON.parse(result);
+           
+          
+            var dataPoints1 = [];
+            
+           for (var i = 0; i < result1.length; i++) {
+               dataPoints1.push({
+                   label:result1[i].ProductName ,y:result1[i].s
+               })
+           }
+            var chart = new CanvasJS.Chart("piechart", {
+                title: {
+                    text: "Top 5 Selling Products"
+                },
+                data: [
+                {
+                    // Change type to "doughnut", "line", "splineArea", etc.
+                    type: "pie",
+                    dataPoints: dataPoints1,
+                   
+                }
+                ]
+               
+            });
+           
+            chart.render();
+           
+   }
+
+        function onError(result) {
+            alert('Cannot process your request at the moment, please try later.');
+        }
+       
+
+        </script>
 </asp:Content>

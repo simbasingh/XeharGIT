@@ -1,14 +1,15 @@
 ﻿
 function formValidation()
 { 
-    var uid = document.registration.userid;
-    var uvin = document.registration.vin;
-    var uname = document.registration.username;
-    var uadd = document.registration.address;
-    var ucountry = document.registration.country;
-    var uzip = document.registration.zip;
-    var uemail = document.registration.email;
-    var ucity = document.registration.city;
+    
+    var uvin = document.getElementById("vin").value;
+    
+    var uname = document.getElementById("username").value;
+    var uadd = document.getElementById("address").value;
+    var ucountry = document.getElementById("country").value;
+    var uzip = document.getElementById("zip").value;
+    var uemail = document.getElementById("email").value;
+    var ucity = document.getElementById("city").value;
 
 
  
@@ -25,7 +26,7 @@ function formValidation()
 
                 if(countryselect(ucountry))  
                 {  
-                    if(allnumeric(uzip,uname))  
+                    if (allnumeric(uzip, uname, uvin, uemail, uadd, ucity, ucountry))
                     {  
                          
                            
@@ -39,20 +40,10 @@ function formValidation()
   
 return false;  
   
-} function userid_validation(uid,mx,my)  
-{  
-    var uid_len = uid.value.length;  
-    if (uid_len == 0 || uid_len >= my || uid_len < mx)  
-    {  
-        alert("User Id should not be empty / length be between "+mx+" to "+my);  
-        uid.focus();  
-        return false;  
-    }  
-    return true;  
-}  
+} 
 function vin_validation(uvin)  
 {  
-    var vin_len = uvin.value.length;  
+    var vin_len = uvin.length;  
     if (vin_len == 0 )  
     {  
         alert("VIN should not be empty ");  
@@ -63,9 +54,9 @@ function vin_validation(uvin)
 }  
 function allLetter(uname)  
 {
-    var un_len = uname.value.length;
+    var un_len = uname.length;
     var letters = /^[A-Za-z]+$/;  
-    if(un_len > 0 && uname.value.match(letters) )  
+    if(un_len > 0 && uname.match(letters) )  
     {  
         return true;  
     }  
@@ -78,9 +69,9 @@ function allLetter(uname)
 }  
 function alphanumeric(uadd)  
 {
-    var add_len = uadd.value.length;
+    var add_len = uadd.length;
     var letters = /^[\s\-\,0-9a-zA-Z]+$/;  
-    if(add_len >0 && uadd.value.match(letters))  
+    if(add_len >0 && uadd.match(letters))  
     {  
         return true;  
     }  
@@ -94,9 +85,9 @@ function alphanumeric(uadd)
 
 function validCity(ucity) {
 
-    var city_len = ucity.value.length;
+    var city_len = ucity.length;
     var letters = /^[a-zA-Z]+$/;
-    if (city_len >0 &&  ucity.value.match(letters)) {
+    if (city_len >0 &&  ucity.match(letters)) {
         return true;
     }
     else {
@@ -118,57 +109,23 @@ function countryselect(ucountry)
         return true;  
     }  
 }  
-function allnumeric(uzip,uname)  
+function allnumeric(uzip, uname, uvin, uemail, uadd, ucity, ucountry)
 {
     //var zip_len = uzip.value.length;
     var numbers = /^[0-9]+$/;  
-    if ( uzip.value.match(numbers))
+    if ( uzip.match(numbers))
     {
-        alert('Form Succesfully Submitted');
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                //document.getElementById("demo").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "page2.aspx", true);
-        xhttp.send();
-       // window.location.reload();
-        //var $form = $("<form/>").attr("id", "registration")
-        //                    .attr("action", "Page2.aspx")
-        //                    .attr("method", "post");
-        //$("body").append($form);
 
-        ////Append the values to be send
-        //AddParameter($form, "name", uname);
-        //AddParameter($form, "technology", uzip);
+        PageMethods.RegisterUser(uzip, uname, uvin, uemail, uadd, ucity, ucountry,onSucess, onError);
 
-        ////Send the Form
-        //$form[0].submit();
+        function onSucess(result) {
+            alert(result);
+        }
 
-
-        ////window.location.href = "page2.aspx";
-        //Window.Open("page2.aspx");
-        //var myObj = { "name": "John"};
-        //$.ajax({
-        //    type: "POST",
-        //    url: "/page2.aspx",
-        //    data: JSON.stringify(myObj),
-        //    contentType: "application/json; charset=utf-8",
-        //    dataType: "json",
-        //    success: function (msg) {
-
-        //        //window.open("page2.aspx");
-        //        window.location("page2.aspx");
-        //    }
-        //});
-        
-
-
-        //var myObj = { "name": "John", "age": 31, "city": "New York" };
-        //var myJSON = JSON.stringify(myObj);
-        //window.location("page2.aspx");
-        //return true;  
+        function onError(result) {
+            alert('Cannot process your request at the moment, please try later.');
+        }
+       
     }  
     else  
     {  
@@ -180,7 +137,7 @@ function allnumeric(uzip,uname)
 function ValidateEmail(uemail)  
 {  
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
-    if(uemail.value.match(mailformat))  
+    if(uemail.match(mailformat))  
     {
 
         

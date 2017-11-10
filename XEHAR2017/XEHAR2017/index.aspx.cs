@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -36,32 +37,38 @@ namespace Quicky
             }
 
         }
-        public string Customers()
+        [WebMethod]
+        public static string Customers()
         {
-             Open();
-            string query = "SELECT * FROM customers";
+           // MySqlConnection k = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
+           // k.Open();
+            string query = "select  ProductName,  max(Sold) as s from products group by ProductName Order by s desc limit 5";
 
             DataTable DT_Results;
 
-            DT_Results = RunSQL(query, k);
+            DT_Results = RunSQL(query);
             string JSONString = string.Empty;
             JSONString = JsonConvert.SerializeObject(DT_Results);
             
             return JSONString;
 
         }
-
-        private DataTable RunSQL(string query, MySqlConnection k)
+        [WebMethod]
+        private static DataTable RunSQL(string query)
         {
-            
-            using (MySqlCommand cmd = new MySqlCommand(query, k))
+            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
+            con.Open();
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     return dt;
+                    
                 }
+                con.Close();
             }
 
         }
