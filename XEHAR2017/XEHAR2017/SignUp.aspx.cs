@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
@@ -16,6 +17,7 @@ namespace XEHAR2017
         {
 
         }
+
 
         protected void AddVendor_Click(object sender, EventArgs e)
         {
@@ -54,6 +56,16 @@ namespace XEHAR2017
             {
                 MiddleEarth.CreateVendor(con, vendor);
             }
+
+        [WebMethod]
+        public static string RegisterUser(string uzip, string uname, string uvin, string uemail, string uadd, string ucity, string ucountry)
+        {
+
+               string result = "user saved";
+            
+
+            return result;
+
         }
     }
 }

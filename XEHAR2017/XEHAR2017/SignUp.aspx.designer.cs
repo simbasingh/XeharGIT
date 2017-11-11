@@ -13,12 +13,17 @@ namespace XEHAR2017 {
     public partial class WebForm1 {
         
         /// <summary>
+
         /// name control.
+
+        /// registration control.
+
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+
         protected global::System.Web.UI.HtmlControls.HtmlInputText name;
         
         /// <summary>
@@ -92,6 +97,8 @@ namespace XEHAR2017 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden vendor;
+        protected global::System.Web.UI.HtmlControls.HtmlForm registration;
+
         
         /// <summary>
         /// ScriptManager1 control.

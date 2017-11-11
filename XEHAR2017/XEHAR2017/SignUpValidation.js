@@ -1,9 +1,16 @@
 ﻿
 function formValidation()
 { 
+
     //var uid = document.registration.userid;
     var uvin = document.getElementById("vin").value;
     var uname = document.getElementById("name").value;
+
+    
+    var uvin = document.getElementById("vin").value;
+    
+    var uname = document.getElementById("username").value;
+
     var uadd = document.getElementById("address").value;
     var ucountry = document.getElementById("country").value;
     var uzip = document.getElementById("zip").value;
@@ -25,7 +32,11 @@ function formValidation()
 
                 if(countryselect(ucountry))  
                 {  
+
                     if (allnumeric(uzip, uname, uvin, uemail, uadd, ucity, ucountry, uzip))
+
+                    if (allnumeric(uzip, uname, uvin, uemail, uadd, ucity, ucountry))
+
                     {  
                          
                            
@@ -114,6 +125,7 @@ function allnumeric(uzip, uname, uvin, uemail, uadd, ucity, ucountry)
     var numbers = /^[0-9]+$/;  
     if ( uzip.match(numbers))
     {
+
         PageMethods.AddVendor(uname, uvin, uemail, uadd, ucity, ucountry, uzip);
 
         function onSucess() {
@@ -138,36 +150,18 @@ function allnumeric(uzip, uname, uvin, uemail, uadd, ucity, ucountry)
         //                    .attr("method", "post");
         //$("body").append($form);
 
-        ////Append the values to be send
-        //AddParameter($form, "name", uname);
-        //AddParameter($form, "technology", uzip);
-
-        ////Send the Form
-        //$form[0].submit();
 
 
-        ////window.location.href = "page2.aspx";
-        //Window.Open("page2.aspx");
-        //var myObj = { "name": "John"};
-        //$.ajax({
-        //    type: "POST",
-        //    url: "/page2.aspx",
-        //    data: JSON.stringify(myObj),
-        //    contentType: "application/json; charset=utf-8",
-        //    dataType: "json",
-        //    success: function (msg) {
+        PageMethods.RegisterUser(uzip, uname, uvin, uemail, uadd, ucity, ucountry,onSucess, onError);
 
-        //        //window.open("page2.aspx");
-        //        window.location("page2.aspx");
-        //    }
-        //});
-        
+        function onSucess(result) {
+            alert(result);
+        }
 
-
-        //var myObj = { "name": "John", "age": 31, "city": "New York" };
-        //var myJSON = JSON.stringify(myObj);
-        //window.location("page2.aspx");
-        //return true;  
+        function onError(result) {
+            alert('Cannot process your request at the moment, please try later.');
+        }
+       
     }  
     else  
     {  
