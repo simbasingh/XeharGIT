@@ -1,10 +1,16 @@
 ﻿
 function formValidation()
 { 
+
+    //var uid = document.registration.userid;
+    var uvin = document.getElementById("vin").value;
+    var uname = document.getElementById("name").value;
+
     
     var uvin = document.getElementById("vin").value;
     
     var uname = document.getElementById("username").value;
+
     var uadd = document.getElementById("address").value;
     var ucountry = document.getElementById("country").value;
     var uzip = document.getElementById("zip").value;
@@ -26,7 +32,11 @@ function formValidation()
 
                 if(countryselect(ucountry))  
                 {  
+
+                    if (allnumeric(uzip, uname, uvin, uemail, uadd, ucity, ucountry, uzip))
+
                     if (allnumeric(uzip, uname, uvin, uemail, uadd, ucity, ucountry))
+
                     {  
                          
                            
@@ -98,7 +108,7 @@ function validCity(ucity) {
 }
 function countryselect(ucountry)  
 {  
-    if(ucountry.value == "Default")  
+    if(ucountry == "Default")  
     {  
         alert('Select your country from the list');  
         ucountry.focus();  
@@ -115,6 +125,32 @@ function allnumeric(uzip, uname, uvin, uemail, uadd, ucity, ucountry)
     var numbers = /^[0-9]+$/;  
     if ( uzip.match(numbers))
     {
+
+        PageMethods.AddVendor(uname, uvin, uemail, uadd, ucity, ucountry, uzip);
+
+        function onSucess() {
+            alert("Success");
+        }
+
+        function onError() {
+            alert('Cannot process your request at the moment, please try later.');
+        }
+        //var xhttp = new XMLHttpRequest();
+        //xhttp.onreadystatechange = function () {
+        //    if (this.readyState == 4 && this.status == 200) {
+        //        alert('Form Succesfully Submitted');
+        //    }
+        //};
+        //xhttp.open("POST", "page2.aspx/AddVendor", true);
+        //xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //xhttp.send("username=Reginald");
+       // window.location.reload();
+        //var $form = $("<form/>").attr("id", "registration")
+        //                    .attr("action", "Page2.aspx")
+        //                    .attr("method", "post");
+        //$("body").append($form);
+
+
 
         PageMethods.RegisterUser(uzip, uname, uvin, uemail, uadd, ucity, ucountry,onSucess, onError);
 
