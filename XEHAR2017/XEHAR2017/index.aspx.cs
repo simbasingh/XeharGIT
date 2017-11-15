@@ -1,8 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -41,14 +43,22 @@ namespace Quicky
         {
            // MySqlConnection k = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
            // k.Open();
-            string query = "select  ProductName,  max(Sold) as s from products group by ProductName Order by s desc limit 5";
+            string query = "select PID, ProductName,  max(TotalSold) as s from products group by ProductName Order by s desc limit 3";
 
             DataTable DT_Results;
 
             DT_Results = RunSQL(query);
             string JSONString = string.Empty;
             JSONString = JsonConvert.SerializeObject(DT_Results);
-            
+
+            // test for other query... read on monday
+          
+         // int [] pid= DT_Results.AsEnumerable().Select(r => r.Field<int>("PID")).ToArray();
+            //var pid = DT_Results.AsEnumerable().Select(r => r.Field<int>("PID")).ToList();
+            //pid.ForEach(Debug.Write());
+            // string jpid=TopSalesChannels(pid);
+           // var re = "hello";
+
             return JSONString;
 
         }
@@ -73,6 +83,53 @@ namespace Quicky
            
 
         }
+
+        [WebMethod]
+        public static List<string> TopSalesChannels(string[] pid)
+        {
+            //Debug.WriteLine("this is the pid"+pid);
+            MySqlConnection k = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
+             k.Open();
+          //  MySqlCommand cmd;
+          //  List<string> termsList = new List<string>();
+            DataTable dt = new DataTable();
+            var hashList = new List<Hashtable>();
+            var libyList = new List<KeyValuePair<string, string>>();
+            var JSONArrrayList = new List<String>();
+            foreach (string s in pid)
+            {
+                string query = ("select PID ,s.Name , p.SoldOnSalesChannel from saleschannels as s, productsaleschannels as p where PID =" + s + "  and s.SCID = p.SCID");
+                MySqlCommand cmd = new MySqlCommand(query, k);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader r = cmd.ExecuteReader();
+                
+                while (r.Read())
+                {
+                    var kv = new KeyValuePair<string, string>(r.GetString(1), r.GetString(2));
+                    libyList.Add(kv);
+
+                }
+                r.Close();
+                var JSONString23 = JsonConvert.SerializeObject(libyList);
+                JSONArrrayList.Add(JSONString23);
+                libyList.Clear();
+                //jack = JSONArrrayList.ToArray<string>
+                //da.Fill(dt);
+                //(new MySqlCommand(query, k)).ToString()
+                // termsList.Add();
+            }
+            
+            //MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            //DataTable dt = new DataTable();
+            //da.Fill(dt);
+            string JSONString2 = string.Empty;
+            
+            JSONString2 = JsonConvert.SerializeObject(dt);
+            // string jpid = Convert.ToString(cmd.ExecuteScalar());
+            return JSONArrrayList;
+        }
+
+
     }
 
 }

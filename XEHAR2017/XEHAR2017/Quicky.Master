@@ -42,6 +42,7 @@
  <div style="margin-left:25%">
  <div class="w3-container">
 <div id="piechart" style="width: 900px; height: 500px;"></div>
+      <div id="piechar" style="width: 500px; height: 200px;"></div>
 </div>   
 </div>
     <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>

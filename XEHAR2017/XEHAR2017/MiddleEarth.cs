@@ -1,48 +1,48 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using MySql.Data.MySqlClient;
-//using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using MySql.Data.MySqlClient;
+using System.Data;
 
-//namespace XEHAR2017
-//{
-//    public class MiddleEarth
-//    {
-//        public static bool TestConnection(IDbConnection con, out string message)
-//        {
-//            try
-//            {
-//                con.Open();
-//                message = "Connection Successful!";
-//                con.Close();
-//            }
-//            catch (Exception s)
-//            {
-//                message = "Couldn't connect to the database: " + s.Message;
-//                return false;
-//            }
-//            return true;
-//        }
+namespace XEHAR2017
+{
+    public class MiddleEarth
+    {
+        public static bool TestConnection(IDbConnection con, out string message)
+        {
+            try
+            {
+                con.Open();
+                message = "Connection Successful!";
+                con.Close();
+            }
+            catch (Exception s)
+            {
+                message = "Couldn't connect to the database: " + s.Message;
+                return false;
+            }
+            return true;
+        }
 
-//        public static bool TestConnection(IDbConnection con)
-//        {
-//            try
-//            {
-//                con.Open();
-//                con.Close();
-//            }
-//            catch (Exception)
-//            {
-//                return false;
-//            }
-//            return true;
-//        }
+        public static bool TestConnection(IDbConnection con)
+        {
+            try
+            {
+                con.Open();
+                con.Close();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
 
 
         public static void CreateVendor(MySqlConnection con, Vendor r)
         {
-            string errors; 
+            string errors;
             if (TestConnection(con, out errors))
             {
                 con.Open();
@@ -225,7 +225,7 @@
         //    }
         //}
     }
-    #region
+
     public class Vendor
     {
         public int VID { get; set; }
@@ -238,6 +238,8 @@
         public string Zip { get; set; }
         public string Country { get; set; }
         public string Email { get; set; }
+    }
+}
 
 //        public static void CreateVendor(MySqlConnection con, Vendor r)
 //        {

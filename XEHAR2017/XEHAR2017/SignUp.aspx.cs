@@ -56,6 +56,7 @@ namespace XEHAR2017
             {
                 MiddleEarth.CreateVendor(con, vendor);
             }
+        }
 
         [WebMethod]
         public static string RegisterUser(string uzip, string uname, string uvin, string uemail, string uadd, string ucity, string ucountry)
