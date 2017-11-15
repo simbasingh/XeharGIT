@@ -19,51 +19,55 @@
     </form>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-
-     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+ <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
+    
+    // Load the Visualization API and the piechart package.
+    google.charts.load('current', {'packages':['corechart']});
+      
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
         
+        function drawChart(){
         
-
         PageMethods.SalesChannels(onSucess, onError);
 
         function onSucess(result) {
 
+            //-------------------------------this is for google charts--------------------------------
             var result1 = [];
             
             result1 = JSON.parse(result);
             console.log(result1);
-          
-            var dataPoints1 = [];
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Key');
+            data.addColumn('number', 'Total Sold');
+            
+            // data.addColumn('number', 'Wholesale');
 
-            for (var i = 0; i < result1.length; i++) {
-                dataPoints1.push({
-                    label: result1[i].Key, y: result1[i].Value
-                })
-            }
-            console.log(dataPoints1);
-            var chart = new CanvasJS.Chart("SalesChannelChart", {
-                title: {
-                    text: "Top Sales Channels"
-                },
-                data: [
-                {
-                    // Change type to "doughnut", "line", "splineArea", etc.
-                    type: "column",
-                    dataPoints: dataPoints1,
-
-                }
-                ]
-
+            result1.forEach(function (row) {
+                data.addRow([
+                  row.Key,
+                  row.Value,
+              
+                ]);
             });
-            chart.render();
+            var chart = new google.visualization.ColumnChart(document.getElementById('SalesChannelChart'));
+            chart.draw(data, { title: "Top Sales Channels", width: 700, height: 400 });
+
         }
+
+//--------------------------------------------------------------------------------------------------------------------------
+
+       
            
         function onError(result) {
             alert('Cannot process your request at the moment, please try later.');
         }
         
-
+        }
         </script>
 </body>
 </html>

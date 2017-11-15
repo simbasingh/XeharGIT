@@ -24,7 +24,7 @@ namespace XEHAR2017
         {
              MySqlConnection k = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
             k.Open();
-            string query = "select  s.Name, sum(p.SoldOnSalesChannel) as su from saleschannels as s,  productsaleschannels as p where p.SCID = s.SCID group by s.Name";
+            string query = "select  s.Name as name, sum(p.SoldOnSalesChannel) as su from saleschannels as s,  productsaleschannels as p where p.SCID = s.SCID group by name";
 
             MySqlCommand cmd = new MySqlCommand(query, k);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);

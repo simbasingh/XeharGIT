@@ -50,3 +50,10 @@ aside
 {
     margin-left:10px;
 }
+
+.chartFloat
+{
+    float: left;
+    height:350px;
+    width: 350px;
+}

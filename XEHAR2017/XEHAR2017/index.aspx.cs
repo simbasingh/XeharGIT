@@ -94,7 +94,7 @@ namespace Quicky
           //  List<string> termsList = new List<string>();
             DataTable dt = new DataTable();
             var hashList = new List<Hashtable>();
-            var libyList = new List<KeyValuePair<string, string>>();
+            var libyList = new List<KeyValuePair<string, Int32>>();
             var JSONArrrayList = new List<String>();
             foreach (string s in pid)
             {
@@ -105,7 +105,7 @@ namespace Quicky
                 
                 while (r.Read())
                 {
-                    var kv = new KeyValuePair<string, string>(r.GetString(1), r.GetString(2));
+                    var kv = new KeyValuePair<string, Int32>(r.GetString(1), r.GetInt32(2));
                     libyList.Add(kv);
 
                 }
