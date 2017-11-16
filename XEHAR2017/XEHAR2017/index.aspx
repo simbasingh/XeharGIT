@@ -54,7 +54,7 @@
                 ]);
             });
             var chart = new google.visualization.ColumnChart(document.getElementById('piechart'));
-            chart.draw(data, {title:"Top Products", width: 700, height: 400});
+            chart.draw(data, { title: "Top Products", is3D: true, width: 700, height: 400 });
 
              var pid = [];
              var productNames = [];
