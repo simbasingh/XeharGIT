@@ -25,7 +25,7 @@ namespace XEHAR2017.AdminUI.AdminUIPages
         {
             MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["Xehar"].ConnectionString);
 
-            string strData = "SELECT p.`Product Name`,p.`Sold Quantity` FROM Products p inner join vendors v on p.VID=v.VID WHERE p.VID=1 ORDER BY p.`Sold Quantity` DESC LIMIT " + Param1 + "";
+            string strData = "SELECT p.`ProductName`,p.`TotalSold` FROM Products p inner join vendors v on p.VID=v.VID WHERE p.VID=1 ORDER BY p.`TotalSold` DESC LIMIT " + Param1 + "";
 
             MySqlCommand cmd = new MySqlCommand(strData, con);
             cmd.Connection = con;
