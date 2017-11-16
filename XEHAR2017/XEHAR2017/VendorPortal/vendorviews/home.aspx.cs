@@ -43,8 +43,8 @@ namespace XEHAR2017.AdminUI.AdminUIPages
 
                 returndata.Add(new ChartData
                 {
-                    value = myReader["Sold Quantity"].ToString(),
-                    label = myReader["Product Name"].ToString(),
+                    value = myReader["TotalSold"].ToString(),
+                    label = myReader["ProductName"].ToString(),
                     color = arrColor[counter]
 
                     

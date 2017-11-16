@@ -31,7 +31,7 @@
                                 <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Description">Description</th>
                                 <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Model Number">Model Number</th>
                                 <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Department">Department</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Tax Code">Tax Code</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Available Stock">Quantity</th>
                                 <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Brand">Brand</th>
                                 <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Manufactuer">Manufactuer</th>
                                 <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Vendor Cost">Vendor Cost</th>
@@ -48,19 +48,19 @@
                             <%# DataBinder.Eval(Container, "DataItem.SKU")%>
                             </td>
                             <td width="150">
-                            <%# DataBinder.Eval(Container, "DataItem.Product Name")%>
+                            <%# DataBinder.Eval(Container, "DataItem.ProductName")%>
                             </td>
                             <td width="100" align=center>
                             <%# DataBinder.Eval(Container, "DataItem.Description")%>
                             </td>
                                 <td width="100" align=center>
-                            <%# DataBinder.Eval(Container, "DataItem.Model Number")%>
+                            <%# DataBinder.Eval(Container, "DataItem.ModelNumber")%>
                             </td>
                                 <td width="100" align=center>
                             <%# DataBinder.Eval(Container, "DataItem.Department")%>
                             </td>
                                 <td width="100" align=center>
-                            <%# DataBinder.Eval(Container, "DataItem.Tax Code")%>
+                            <%# DataBinder.Eval(Container, "DataItem.Quantity")%>
                             </td>
                                 <td width="100" align=center>
                             <%# DataBinder.Eval(Container, "DataItem.Brand")%>
@@ -69,7 +69,7 @@
                             <%# DataBinder.Eval(Container, "DataItem.Manufactuer")%>
                             </td>
                                 <td width="100" align=center>
-                            <%# DataBinder.Eval(Container, "DataItem.Vendor Cost")%>
+                            <%# DataBinder.Eval(Container, "DataItem.VendorCost")%>
                             </td>
                                 <td width="100" align=center>
                             <%# DataBinder.Eval(Container, "DataItem.Gender")%>
